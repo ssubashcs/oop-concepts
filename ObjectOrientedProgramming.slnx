@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="../OOP_Helper/OOP_Helper.csproj" />
+  <Project Path="ObjectOrientedProgramming.csproj" />
+</Solution>
