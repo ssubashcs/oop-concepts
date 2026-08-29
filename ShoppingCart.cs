@@ -27,7 +27,7 @@
 
             if (item is null)
             {
-                throw new ArgumentNullException(nameof(item), "Item does not exist!");
+                throw new InvalidOperationException("Item was not found.");
             }
 
             _cartItems.Remove(item);
