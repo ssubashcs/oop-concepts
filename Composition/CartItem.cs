@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedProgramming
+﻿namespace ObjectOrientedProgramming.Composition
 {
     public sealed class CartItem
     {

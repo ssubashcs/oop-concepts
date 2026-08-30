@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedProgramming
+﻿namespace ObjectOrientedProgramming.Inheritance
 {
     public abstract class PaymentMethod
     {

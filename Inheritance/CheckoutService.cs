@@ -1,4 +1,6 @@
-﻿namespace ObjectOrientedProgramming
+﻿using ObjectOrientedProgramming.Composition;
+
+namespace ObjectOrientedProgramming.Inheritance
 {
     public static class CheckoutService
     {

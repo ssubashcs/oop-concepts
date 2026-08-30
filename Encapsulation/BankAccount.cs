@@ -1,4 +1,4 @@
-﻿namespace ObjectOrientedProgramming
+﻿namespace ObjectOrientedProgramming.Encapsulation
 {
     /// <summary>
     /// Represents a bank account and encapsulates account state and behavior.
