@@ -1,23 +1,10 @@
-﻿using ObjectOrientedProgramming.Composition;
-
-namespace ObjectOrientedProgramming.Interfaces
+﻿namespace ObjectOrientedProgramming.Interfaces
 {
-    public sealed class CheckoutCalculator
+    public static class CheckoutCalculator
     {
-        private readonly IDiscountPolicy _discountPolicy; 
-
-        public CheckoutCalculator(IDiscountPolicy discountPolicy)
+        public static decimal CalculateFinalTotal(decimal subTotal, decimal discountAmount)
         {
-            ArgumentNullException.ThrowIfNull(discountPolicy);
-            
-            _discountPolicy = discountPolicy;
-        }
-
-        public decimal CalculateFinalTotal(ShoppingCart cart)
-        {
-            ArgumentNullException.ThrowIfNull(cart);
-
-            decimal finalTotal = cart.Total - _discountPolicy.CalculateDiscount(cart);
+            decimal finalTotal = subTotal - discountAmount;
 
             return Math.Max(0m, finalTotal);
         }

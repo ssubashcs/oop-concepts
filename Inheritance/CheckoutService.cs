@@ -1,17 +1,15 @@
-﻿using ObjectOrientedProgramming.Composition;
-
-namespace ObjectOrientedProgramming.Inheritance
+﻿namespace ObjectOrientedProgramming.Inheritance
 {
-    public static class CheckoutService
+    internal static class CheckoutService
     {
-        public static void Checkout(ShoppingCart cart, PaymentMethod paymentMethod)
+        internal static void Checkout(PaymentMethod paymentMethod, decimal amount)
         {
-            ArgumentNullException.ThrowIfNull(cart);
             ArgumentNullException.ThrowIfNull(paymentMethod);
 
-            if (cart.Items.Count == 0) throw new InvalidOperationException("Cannot checkout an empty cart.");
+            // This is boundary protection, not a claim that the current workflow produces negative values.
+            if (amount <= 0) throw new InvalidOperationException("Amount cannot be zero.");
 
-            paymentMethod.Pay(cart.Total);
+            paymentMethod.Pay(amount);
         }
     }
 }
