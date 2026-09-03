@@ -7,12 +7,13 @@ namespace ObjectOrientedProgramming.SRP
 {
     public sealed class CheckoutWorkflow
     {
-        public CheckoutReceipt CheckoutPurchase(ShoppingCart cart, IDiscountPolicy discountPolicy, PaymentMethod payment, ShippingAddress address)
+        public CheckoutReceipt CheckoutPurchase(ShoppingCart cart, IDiscountPolicy discountPolicy, PaymentMethod payment, ShippingAddress address, IReceiptDelivery delivery)
         {
             ArgumentNullException.ThrowIfNull(cart);
             ArgumentNullException.ThrowIfNull(discountPolicy);
             ArgumentNullException.ThrowIfNull(payment);
             ArgumentNullException.ThrowIfNull(address);
+            ArgumentNullException.ThrowIfNull(delivery);
 
             if (cart.Items.Count == 0)
                 throw new InvalidOperationException("Cannot checkout an empty cart.");
@@ -23,7 +24,11 @@ namespace ObjectOrientedProgramming.SRP
 
             ProcessPayment(payment, finalTotal);
 
-            return GenerateReceipt(cart.Total, discountAmount, finalTotal, payment.Name, address);
+            CheckoutReceipt receipt = GenerateReceipt(cart.Total, discountAmount, finalTotal, payment.Name, address);
+
+            delivery.Deliver(receipt);
+
+            return receipt;
         }
 
         private static decimal CalculateDiscount(ShoppingCart cart, IDiscountPolicy discountPolicy)
