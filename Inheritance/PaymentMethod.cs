@@ -9,7 +9,14 @@
             Name = name;
         }
 
-        public abstract void Pay(decimal amount);
+        public void Pay(decimal amount)
+        {
+            if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be greater than zero.");
+
+            ProcessPayment(amount);
+        }
+
+        protected abstract void ProcessPayment(decimal amount);
     }
 
     public sealed class CardPayment : PaymentMethod
@@ -19,7 +26,7 @@
             
         }
 
-        public override void Pay(decimal amount)
+        protected override void ProcessPayment(decimal amount)
         {
             Console.WriteLine($"Paid {amount} by card.");
         }
@@ -32,7 +39,7 @@
 
         }
 
-        public override void Pay(decimal amount)
+        protected override void ProcessPayment(decimal amount)
         {
             Console.WriteLine($"Paid {amount} by bank.");
         }

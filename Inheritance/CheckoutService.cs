@@ -7,7 +7,7 @@
             ArgumentNullException.ThrowIfNull(paymentMethod);
 
             // This is boundary protection, not a claim that the current workflow produces negative values.
-            if (amount <= 0) throw new InvalidOperationException("Amount cannot be zero.");
+            if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be greater than zero.");
 
             paymentMethod.Pay(amount);
         }
